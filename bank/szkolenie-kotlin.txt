@@ -1,0 +1,28 @@
+kotlin + spring/ rozwiązania javowa
+kotlin + android
+kotlin + transpilacja do JavaScriptu
+
+
+
+Unit ~ void (taki undefined)
+
+val/var
+
+
+
+data class ... -> dodaje kilka bajerów do klasy - geterry seterry itp
+
+"primary constructor"
+
+
+
+trailing function   -   trochę jak arrow functions
+
+extension function - trochee jak rozszerzanie prototypu
+
+trailing closure
+
+
+
+
+

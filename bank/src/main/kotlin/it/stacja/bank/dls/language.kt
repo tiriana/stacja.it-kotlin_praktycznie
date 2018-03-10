@@ -4,8 +4,10 @@ import it.stacja.bank.model.Customer
 
 fun customer(block: (customer: Customer) -> Unit): Customer {
     val customer = Customer()
-
     block(customer)
-
     return customer;
+}
+
+val newCustomer = customer {
+    it.name = "KOwalski"
 }
