@@ -31,3 +31,16 @@ class CustomerBuilder {
 
 fun customer(block: CustomerBuilder.() -> Unit): Customer =
         CustomerBuilder().apply(block).build();
+
+//-----------------------------
+
+
+val newCustomer = customer {
+    name = "Jan Kowalski"
+    dateOfBirth = "02-03-1980"
+    address {
+        info = "Dąbrowskiego 79a"
+        city = "poznań"
+        code = "11-222"
+    }
+}
