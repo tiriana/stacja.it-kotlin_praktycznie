@@ -10,5 +10,15 @@ class AccountService(
     fun createAccount() {
         val accountNumber: String = accountNumberGenerator.next
         val account = Account(number = accountNumber);
+        accountRepository.save(account);
+    }
+
+    private fun process(accountNumber: String, operation: (Account) -> Account) {
+        val account = accountRepository.findByNumber(accountNumber);
+
+        account?.let {
+            accountRepository.update(operation(it));
+        }
+
     }
 }
