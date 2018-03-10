@@ -1,4 +1,4 @@
-package it.stacja.bank
+package it.stacja.bank.controller
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -12,6 +12,6 @@ class HelloController {
             value = "name",
             required = false,
             defaultValue = "Kotlin"
-    ) name: String = "Is this important?") = "Hello $name"
+    ) name: String = "Is this important?    ") = "Hello $name"
 
 }

@@ -2,7 +2,9 @@ package it.stacja.bank.service
 
 import it.stacja.bank.repository.AccountRepository
 import it.stacja.bank.model.Account
+import org.springframework.stereotype.Service
 
+@Service
 class AccountService(
         private val accountRepository: AccountRepository,
         private val accountNumberGenerator: AccountNumberGenerator) {
