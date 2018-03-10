@@ -8,7 +8,9 @@ class InMemoryAccountsReposotory: AccountRepository {
     private val counter = AtomicLong();
 
     override fun save(account: Account): Account {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val updatedAccount = account.copy(id = counter.incrementAndGet());
+        accounts[account.number] = updatedAccount;
+        return updatedAccount;
     }
 
     override fun update(account: Account) {
@@ -16,6 +18,6 @@ class InMemoryAccountsReposotory: AccountRepository {
     }
 
     override fun findByNumber(accountNumber: String): Account? {
-        val id = counter.incrementAndGet();
+
     }
 }
