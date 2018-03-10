@@ -13,6 +13,12 @@ class AddressBuilder {
     fun build(): Address = Address(info, city, code)
 }
 
+class Addresses: ArrayList<Address>() {
+    fun address(block: AddressBuilder.() -> Unit) {
+        add(AddressBuilder().apply(block).build());
+    }
+}
+
 class CustomerBuilder {
     var name = ""
     private var dob = Date()
@@ -20,13 +26,13 @@ class CustomerBuilder {
         set(value) {
             dob = SimpleDateFormat("dd-MM-yyyy").parse(value)
         }
-    private var address: Address? = null
+    private var addresses = mutableListOf<Address>();
 
-    fun address(block: AddressBuilder.() -> Unit) {
-        address = AddressBuilder().apply(block).build()
+    fun addresses(block: Addresses.() -> Unit) {
+        addresses.addAll(Addresses().apply(block))
     }
 
-    fun build(): Customer = Customer(name, dob, address)
+    fun build(): Customer = Customer(name, dob, addresses)
 }
 
 fun customer(block: CustomerBuilder.() -> Unit): Customer =
@@ -38,9 +44,17 @@ fun customer(block: CustomerBuilder.() -> Unit): Customer =
 val newCustomer = customer {
     name = "Jan Kowalski"
     dateOfBirth = "02-03-1980"
-    address {
-        info = "Dąbrowskiego 79a"
-        city = "poznań"
-        code = "11-222"
+    addresses {
+        address {
+            info = "Dąbrowskiego 79a"
+            city = "Poznań"
+            code = "11-222"
+        }
+        address {
+            info = "Grunwaldzka 123"
+            city = "Poznań"
+            code = "11-222"
+        }
     }
+
 }

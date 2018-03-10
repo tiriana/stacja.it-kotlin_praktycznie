@@ -5,4 +5,4 @@ import java.util.*
 data class Customer(
         val name: String,
         val dateOfBirth: Date,
-        val address: Address? = null)
+        val address: List<Address>)
