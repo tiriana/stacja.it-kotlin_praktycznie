@@ -2,26 +2,32 @@ package it.stacja.bank.dls
 
 import it.stacja.bank.model.Address
 import it.stacja.bank.model.Customer
-
-fun customer(block: Customer.() -> Unit): Customer = Customer().apply(block);
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddressBuilder {
     var info = ""
     var city = ""
     var code = ""
 
-    build(): Address = Address(info, city, code)
+    fun build(): Address = Address(info, city, code)
 }
 
-//fun Customer.address(block: Address.() -> Unit) {
-//    address = Address().apply(block);
-//}
-//
-//val newCustomer = customer {
-//    name = "Kowalski"
-//    address {
-//        baseInfo = "Dąbrowskiego"
-//        city = "Poznań"
-//        postalCode = "61-234"
-//    }
-//}
+class CustomerBuilder {
+    var name = ""
+    private var dob = Date()
+    var dateOfBirth: String = ""
+        set(value) {
+            dob = SimpleDateFormat("dd-MM-yyyy").parse(value)
+        }
+    private var address: Address? = null
+
+    fun address(block: AddressBuilder.() -> Unit) {
+        address = AddressBuilder().apply(block).build()
+    }
+
+    fun build(): Customer = Customer(name, dob, address)
+}
+
+fun customer(block: CustomerBuilder.() -> Unit): Customer =
+        CustomerBuilder().apply(block).build();
