@@ -1,2 +1,6 @@
-./bank/.idea
+bank/.idea
+bank/.gradle
 bank/out/
+
+bank.old/.idea
+bank.old/out/
