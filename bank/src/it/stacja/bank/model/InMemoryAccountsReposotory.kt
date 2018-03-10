@@ -13,8 +13,14 @@ class InMemoryAccountsReposotory: AccountRepository {
         return updatedAccount;
     }
 
-    override fun update(account: Account) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun update(account: Account): Account? {
+        val oldAccount = accounts[account.number];
+
+        if (oldAccount != null) {
+            accounts[account.number] = account;
+        }
+
+        return oldAccount;
     }
 
     override fun findByNumber(accountNumber: String): Account? {
