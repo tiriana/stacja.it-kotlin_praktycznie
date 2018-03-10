@@ -33,6 +33,6 @@ class AccountService(
     private fun process(accountNumber: String, operation: (Account) -> Account) {
         val account = accountRepository.findByNumber(accountNumber);
 
-        account?.let { accountRepository.update(operation(it)); }
+        account?.let { accountRepository.save(operation(it)); }
     }
 }
