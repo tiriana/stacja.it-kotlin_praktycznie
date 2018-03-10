@@ -24,6 +24,6 @@ class InMemoryAccountsReposotory: AccountRepository {
     }
 
     override fun findByNumber(accountNumber: String): Account? {
-
+        return accounts.values.firstOrNull { it.number == accountNumber }
     }
 }
