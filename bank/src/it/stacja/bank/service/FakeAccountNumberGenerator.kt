@@ -1,4 +1,11 @@
 package it.stacja.bank.service
 
-class FakeAccountNumberGenerator {
+import java.lang.String.format
+import java.util.concurrent.atomic.AtomicLong
+
+class FakeAccountNumberGenerator() : AccountNumberGenerator {
+    override val next: String
+        get() = format("0%26d", counter.incrementAndGet())
+
+    private val counter = AtomicLong();
 }
