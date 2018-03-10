@@ -5,6 +5,10 @@ import it.stacja.bank.model.Customer
 import java.text.SimpleDateFormat
 import java.util.*
 
+@DslMarker
+annotation class CustomerDsl
+
+@CustomerDsl
 class AddressBuilder {
     var info = ""
     var city = ""
@@ -13,12 +17,14 @@ class AddressBuilder {
     fun build(): Address = Address(info, city, code)
 }
 
+@CustomerDsl
 class Addresses: ArrayList<Address>() {
     fun address(block: AddressBuilder.() -> Unit) {
         add(AddressBuilder().apply(block).build());
     }
 }
 
+@CustomerDsl
 class CustomerBuilder {
     var name = ""
     private var dob = Date()
