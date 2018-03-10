@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicLong
 
 class FakeAccountNumberGenerator() : AccountNumberGenerator {
     override val next: String
-        get() = format("0%26d", counter.incrementAndGet())
+        get() = format("%026d", counter.incrementAndGet())
 
     private val counter = AtomicLong();
 }

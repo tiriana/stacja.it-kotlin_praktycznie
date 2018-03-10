@@ -4,13 +4,13 @@ import it.stacja.bank.repository.AccountRepository
 import it.stacja.bank.model.Account
 
 class AccountService(
-        val accountRepository: AccountRepository,
-        val accountNumberGenerator: AccountNumberGenerator) {
+        private val accountRepository: AccountRepository,
+        private val accountNumberGenerator: AccountNumberGenerator) {
 
-    fun createAccount() {
+    fun createAccount(): Account {
         val accountNumber: String = accountNumberGenerator.next
         val account = Account(number = accountNumber);
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     fun deposit(accountNumber: String, funds: Long) {
@@ -22,6 +22,10 @@ class AccountService(
             it.checkFunds(funds);
             it.withdraw(funds);
         }
+    }
+
+    fun findAccountByNumber(number: String): Account? {
+        return accountRepository.findByNumber(number);
     }
 
     private fun process(accountNumber: String, operation: (Account) -> Account) {
