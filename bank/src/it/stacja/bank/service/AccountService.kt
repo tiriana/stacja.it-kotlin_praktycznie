@@ -13,12 +13,20 @@ class AccountService(
         accountRepository.save(account);
     }
 
+    fun deposit(accountNumber: String, funds: Long) {
+        process(accountNumber) { it.deposit(funds); }
+    }
+
+    fun withdraw(accountNumber: String, funds: Long) {
+        process(accountNumber) {
+            it.checkFunds(funds);
+            it.withdraw(funds);
+        }
+    }
+
     private fun process(accountNumber: String, operation: (Account) -> Account) {
         val account = accountRepository.findByNumber(accountNumber);
 
-        account?.let {
-            accountRepository.update(operation(it));
-        }
-
+        account?.let { accountRepository.update(operation(it)); }
     }
 }
