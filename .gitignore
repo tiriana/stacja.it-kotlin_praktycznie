@@ -2,5 +2,9 @@ bank/.idea
 bank/.gradle
 bank/out/
 
+bank.to.import/.idea
+bank.to.import/.gradle
+bank.to.import/out/
+
 bank.old/.idea
 bank.old/out/
