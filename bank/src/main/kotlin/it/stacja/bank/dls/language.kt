@@ -5,15 +5,23 @@ import it.stacja.bank.model.Customer
 
 fun customer(block: Customer.() -> Unit): Customer = Customer().apply(block);
 
-fun Customer.address(block: Address.() -> Unit) {
-    address = Address().apply(block);
+class AddressBuilder {
+    var info = ""
+    var city = ""
+    var code = ""
+
+    build(): Address = Address(info, city, code)
 }
 
-val newCustomer = customer {
-    name = "Kowalski"
-    address {
-        baseInfo = "Dąbrowskiego"
-        city = "Poznań"
-        postalCode = "61-234"
-    }
-}
+//fun Customer.address(block: Address.() -> Unit) {
+//    address = Address().apply(block);
+//}
+//
+//val newCustomer = customer {
+//    name = "Kowalski"
+//    address {
+//        baseInfo = "Dąbrowskiego"
+//        city = "Poznań"
+//        postalCode = "61-234"
+//    }
+//}

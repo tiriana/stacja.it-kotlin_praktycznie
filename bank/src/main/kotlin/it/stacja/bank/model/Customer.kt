@@ -1,3 +1,8 @@
 package it.stacja.bank.model
 
-data class Customer(var name: String? = null, var address: Address? = null)
+import java.util.*
+
+data class Customer(
+        val name: String,
+        val dateOfBirth: Date,
+        val address: Address? = null)
